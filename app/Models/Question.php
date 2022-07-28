@@ -12,6 +12,7 @@ class Question extends Model
 
     protected $casts = [
         'due_date' => 'datetime',
+        'genders' => 'array',
     ];
 
     public function brand(): BelongsTo
