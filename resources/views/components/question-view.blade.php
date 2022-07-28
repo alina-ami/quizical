@@ -6,8 +6,8 @@
     <h5 class="text-white mb-0 up t-medium">by {{ $question->brand->name }}</h5>
 
     <div class="row d-flex justify-content-center mt-2">
-      <a href="{{route('web.questions.answer', ['question' => $question])}}">
-        <button class="col-6 btn bg-white">{{ $buttonName }}</button>
+      <a href="{{route('web.questions.answer', ['question' => $question])}}" class="col-6">
+        <button class="btn bg-white">{{ $buttonName }}</button>
       </a>
     </div>
   </div>

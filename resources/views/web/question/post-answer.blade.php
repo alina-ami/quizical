@@ -11,9 +11,11 @@
             <p>You earned <strong>{{$answer->points_earned}}</strong> points.</p>
         </div>
 
-        <a href="{{route('web.home')}}">
-            <button class="col-6 btn bg-gradient-primary">Discover more challenges</button>
-        </a>
+        <div class="row d-flex justify-content-center">
+            <a href="{{route('web.home')}}" class="col-5">
+                <button class="btn bg-gradient-primary">Discover more challenges</button>
+            </a>
+        </div>
     </div>
 </div>
 @endsection
