@@ -5,7 +5,7 @@
     <h2 class="mb-4">{{ Auth::user()->name }}</h2>
 
     @foreach($questions as $question)
-        <x-question-view :title="$question->title" :brand="$question->brand->name" buttonName="Answer" />
+        <x-question-view :question="$question" buttonName="Answer" />
     @endforeach
 
     <br><br><br>
