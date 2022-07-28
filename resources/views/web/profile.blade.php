@@ -7,7 +7,7 @@
 
             <div class="card card-body">
                 {{-- :action="route('web.profile.completion')" --}}
-                <x-form method="POST">
+                <x-form :action="route('web.profile.store')" method="POST">
                     <div class="mb-3">
                         <label class="text-left" for='name'>My name is:</label>
                         <x-input name="name" id="name" placeholder="Julie" />
@@ -19,9 +19,9 @@
 
                     <x-genders name="genders[]" label="I identify as:" type="radio" />
 
-                    <x-tags name="interests" label="And interesed in:" :options="$interests" />
+                    <x-tags name="interests[]" label="And interesed in:" :options="$interests" />
 
-                    <x-tags name="brands" label="These are some brands I like and use:" :options="$brands" />
+                    <x-tags name="brands[]" label="These are some brands I like and use:" :options="$brands" />
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">

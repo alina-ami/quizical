@@ -21,7 +21,7 @@ class Tags extends Component
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-        $this->values = old($name, $values ?? '');
+        $this->values = old($name, $values ?? []);
         $this->options = $options;
         $this->label = $label;
 

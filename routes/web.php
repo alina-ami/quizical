@@ -39,7 +39,10 @@ Route::prefix('/')->as('web.')->group(function () {
         Route::get('/{question}/answer', [WebQuestionController::class, 'answer'])->name('answer');
         Route::post('/{question}/submit-answer', [WebQuestionController::class, 'storeAnswer'])->name('store-answer');
     });
-    Route::get('/profile', [WebProfileController::class, 'profile'])->name('profile');
+    Route::prefix('/profile')->as('profile.')->group(function () {
+        Route::get('/', [WebProfileController::class, 'profile'])->name('create');
+        Route::post('/', [WebProfileController::class, 'store'])->name('store');
+    });
 });
 
 

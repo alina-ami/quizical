@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('gender')->after('email_verified_at')->nullable();
             $table->integer('age')->after('gender')->nullable();
             $table->unsignedBigInteger('total_points_earned')->after('age')->default(0);
+            $table->json('brands_liked')->nullable()->after('total_points_earned');
+            $table->json('interests')->nullable()->after('brands_liked');
         });
     }
 
