@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\GoogleController;
+use App\Http\Controllers\Companies\QuestionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 
@@ -24,3 +25,6 @@ Route::get('/register', [LoginController::class, 'register']);
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+Route::prefix('companies')->as('companies.')->group(function () {
+    Route::resource('questions', QuestionController::class);
+});
