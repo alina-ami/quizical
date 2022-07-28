@@ -10,6 +10,11 @@ class Question extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'due_date' => 'datetime',
+        'genders' => 'array',
+    ];
+
     public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class);

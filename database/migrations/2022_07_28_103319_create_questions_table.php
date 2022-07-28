@@ -16,10 +16,15 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('brand_id');
-            $table->string('title');
-            $table->string('type');
+            $table->text('title');
+            $table->string('type')->nullable();
             $table->integer('points_for_answer')->nullable();
             $table->integer('points_for_relevance')->nullable();
+            $table->integer('minimum_age')->nullable();
+            $table->integer('maximum_age')->nullable();
+            $table->integer('minimum_reach')->nullable();
+            $table->json('genders')->nullable();
+            $table->timestamp('due_date')->nullable();
             $table->timestamps();
         });
     }

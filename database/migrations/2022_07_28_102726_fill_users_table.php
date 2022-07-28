@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function ($table) {
-            $table->foreignId('role_id')->after('id');
+            $table->foreignId('role_id')->after('id')->nullable();
             $table->unsignedBigInteger('level_id')->after('role_id')->default(1);
-            $table->string('gender')->after('email_verified_at');
-            $table->integer('age')->after('gender');
-            $table->unsignedBigInteger('total_points_earned')->after('age');
+            $table->string('gender')->after('email_verified_at')->nullable();
+            $table->integer('age')->after('gender')->nullable();
+            $table->unsignedBigInteger('total_points_earned')->after('age')->default(0);
         });
     }
 
