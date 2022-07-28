@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->integer('points_for_answer')->nullable();
             $table->integer('points_for_relevance')->nullable();
-            $table->integer('minimum_age')->nullable();
-            $table->integer('maximum_age')->nullable();
-            $table->integer('minimum_reach')->nullable();
+            $table->integer('min_age')->nullable();
+            $table->integer('max_age')->nullable();
+            $table->integer('min_reach')->nullable();
             $table->json('genders')->nullable();
-            $table->timestamp('due_date')->nullable();
+            $table->timestamp('due_at')->nullable();
             $table->timestamps();
         });
     }
