@@ -34,7 +34,7 @@ class GoogleController extends Controller
                 'name' => $googleUser->name,
                 'email' => $googleUser->email,
                 'google_id' => $googleUser->id,
-                'password' => encrypt('123456dummy')
+                'password' => 'password'
             ])->assignRole(
                 session('user_type') == 'brand'
                     ? 'brand_manager'
@@ -44,10 +44,6 @@ class GoogleController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route(
-            $user->hasRole('brand_manager')
-                ? 'brands.home'
-                : 'home'
-        );
+        return $user->getHomepageRedirect();
     }
 }
