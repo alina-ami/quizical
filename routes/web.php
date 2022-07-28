@@ -7,6 +7,7 @@ use App\Http\Controllers\Brands\HomeController;
 use App\Http\Controllers\Brands\QuestionController;
 use App\Http\Controllers\Web\HomeController as WebHomeController;
 use App\Http\Controllers\Web\ProfileController as WebProfileController;
+use App\Http\Controllers\Web\QuestionController as WebQuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,10 @@ Route::prefix('/')->as('web.')->group(function () {
     });
 
     Route::get('/', [WebHomeController::class, 'index'])->name('home');
+    Route::prefix('/questions')->as('questions.')->group(function () {
+        Route::get('/{question}/answer', [WebQuestionController::class, 'answer'])->name('answer');
+        Route::post('/{question}/submit-answer', [WebQuestionController::class, 'storeAnswer'])->name('store-answer');
+    });
     Route::get('/profile', [WebProfileController::class, 'profile'])->name('profile');
 });
 
