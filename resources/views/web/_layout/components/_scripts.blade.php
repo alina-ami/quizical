@@ -9,6 +9,11 @@
 <script src="{{ asset('assets/js/plugins/threejs.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/orbit-controls.js') }}"></script>
 <script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
     new Chart(ctx, {
@@ -285,7 +290,7 @@
                 window
                 window.fetch(
                         "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard-pro/assets/js/points.json"
-                        )
+                    )
                     .then(response => response.json())
                     .then(data => {
                         makeMagic(data.points);

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Brands;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Brands\Questions\StoreQuestionRequest;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -14,7 +16,12 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return view('brands.questions.index');
+        $questions = Question::where('brand_id', 1)
+            ->withCount('answers')
+            ->latest()
+            ->paginate(12);
+
+        return view('brands.questions.index')->with('questions', $questions);
     }
 
     /**
@@ -33,9 +40,14 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreQuestionRequest $request)
     {
-        //
+        $question = Question::create([
+            'brand_id' => 1,
+            ...$request->validated()
+        ]);
+
+        return redirect()->route('brands.questions.show', $question->id);
     }
 
     /**
@@ -78,8 +90,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return redirect()->back();
     }
 }

@@ -16,6 +16,8 @@ use App\View\Components\Forms\Inputs\Password;
 use App\View\Components\Forms\Inputs\Tags;
 use App\View\Components\Forms\Inputs\Textarea;
 use App\View\Components\Forms\Label;
+use App\View\Components\Tables\RowActions;
+use App\View\Components\Tables\Table;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -50,6 +52,10 @@ class CustomComponentsProvider extends ServiceProvider
         Blade::component('flat-pickr', FlatPickr::class);
         Blade::component('genders', Genders::class);
         Blade::component('tags', Tags::class);
+
+
+        Blade::component('table', Table::class);
+        Blade::component('row-actions', RowActions::class);
 
 
         Blade::component('nav-nested-menu-item', NestedMenuItem::class);
