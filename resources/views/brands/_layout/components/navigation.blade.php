@@ -17,7 +17,7 @@
             <x-nav-simple-menu-item icon="fas fa-heart" label="Home" :url="route('brands.home')" />
             <x-nav-simple-menu-item icon="fa-solid fa-comment-dots" label="Questions" :url="route('brands.questions.index')" />
 
-            <x-nav-separator-item label="Test Separator" />
+            {{-- <x-nav-separator-item label="Test Separator" /> --}}
 
             {{-- <x-nav-simple-menu-item label="Test menu item" :url="route('web.home')"></x-nav-simple-menu-item>
             <x-nav-nested-menu-item label="Nested item">
