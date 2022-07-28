@@ -18,7 +18,7 @@ class Authenticate extends Middleware
         if (!$request->expectsJson()) {
             return Str::contains($request->url(), 'brands')
                 ? route('brands.auth.login')
-                : route('home');
+                : route('web.home');
         }
     }
 }

@@ -3,7 +3,7 @@
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href="{{ route('home') }}" target="_blank">
+        <a class="navbar-brand m-0" href="{{ route('web.home') }}" target="_blank">
             <img src="{{ asset('assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
             <span class="ms-1 font-weight-bold">ReachMe</span>
         </a>
@@ -19,19 +19,19 @@
 
             <x-nav-separator-item label="Test Separator" />
 
-            <x-nav-simple-menu-item label="Test menu item" :url="route('home')"></x-nav-simple-menu-item>
+            {{-- <x-nav-simple-menu-item label="Test menu item" :url="route('web.home')"></x-nav-simple-menu-item>
             <x-nav-nested-menu-item label="Nested item">
-                <x-nav-simple-menu-item label="Changelog 1" :url="route('home')" :nested="true">
+                <x-nav-simple-menu-item label="Changelog 1" :url="route('web.home')" :nested="true">
                 </x-nav-simple-menu-item>
-                <x-nav-simple-menu-item label="Changelog 2" :url="route('home')" :nested="true">
+                <x-nav-simple-menu-item label="Changelog 2" :url="route('web.home')" :nested="true">
                 </x-nav-simple-menu-item>
                 <x-nav-nested-menu-item label="Nested item 2" :level="2">
-                    <x-nav-simple-menu-item label="Changelog 2.1" :url="route('home')" :nested="true">
+                    <x-nav-simple-menu-item label="Changelog 2.1" :url="route('web.home')" :nested="true">
                     </x-nav-simple-menu-item>
-                    <x-nav-simple-menu-item label="Changelog 2.2" :url="route('home')" :nested="true">
+                    <x-nav-simple-menu-item label="Changelog 2.2" :url="route('web.home')" :nested="true">
                     </x-nav-simple-menu-item>
                 </x-nav-nested-menu-item>
-            </x-nav-nested-menu-item>
+            </x-nav-nested-menu-item> --}}
         </ul>
     </div>
 </aside>
