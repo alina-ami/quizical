@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'login']);
 
 
+
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);
 
 
@@ -35,6 +36,7 @@ Route::prefix('brands')->as('brands.')->group(function () {
         Route::get('/login', [LoginController::class, 'login'])->name('login');
         Route::get('/login/google', [LoginController::class, 'google'])->name('google');
 
+        Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
         Route::get('/register', [LoginController::class, 'register'])->name('register');
     });
 

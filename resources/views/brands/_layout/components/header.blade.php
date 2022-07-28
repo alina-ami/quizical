@@ -19,10 +19,9 @@
             </div>
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <a href="../../pages/authentication/signin/illustration.html"
-                        class="nav-link text-body font-weight-bold px-0" target="_blank">
-                        <i class="fa fa-user me-sm-1"></i>
-                        <span class="d-sm-inline d-none">Sign In</span>
+                    <a href="{{ route('brands.auth.logout') }}" class="nav-link text-body font-weight-bold px-0">
+                        <i class="fa-solid fa-arrow-right-from-bracket me-sm-1"></i>
+                        <span class="d-sm-inline d-none">Sign Out</span>
                     </a>
                 </li>
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
