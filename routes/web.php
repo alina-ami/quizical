@@ -18,7 +18,7 @@ use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/login', [LoginController::class, 'login']);
 Route::get('/register', [LoginController::class, 'register']);
