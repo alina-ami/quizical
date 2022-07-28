@@ -12,7 +12,6 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run()
     {
-        // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
         $guardName = config('auth.defaults.guard');
         foreach (['admin', 'customer', 'brand_manager'] as $roleName) {

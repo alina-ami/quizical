@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Api;
 
 use Exception;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
-class AuthController extends Controller
+class GoogleController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -37,11 +38,12 @@ class AuthController extends Controller
 
                 Auth::login($finduser);
 
-                return redirect('/home');
+                return redirect('/');
 
             } else {
                 $newUser = User::create([
                     'name' => $user->name,
+                    'role_id' => Role::firstWhere('name', 'customer')->id,
                     'email' => $user->email,
                     'google_id'=> $user->id,
                     'password' => encrypt('123456dummy')
@@ -49,7 +51,7 @@ class AuthController extends Controller
 
                 Auth::login($newUser);
 
-                return redirect('/home');
+                return redirect('/');
             }
 
         } catch (Exception $e) {
