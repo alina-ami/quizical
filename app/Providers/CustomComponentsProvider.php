@@ -7,12 +7,13 @@ use App\View\Components\Admin\Navigation\SeparatorItem;
 use App\View\Components\Admin\Navigation\SimpleMenuItem;
 use App\View\Components\Forms\Error;
 use App\View\Components\Forms\Form;
-use App\View\Components\Forms\Input\Genders;
 use App\View\Components\Forms\Inputs\Checkbox;
 use App\View\Components\Forms\Inputs\Email;
 use App\View\Components\Forms\Inputs\FlatPickr;
+use App\View\Components\Forms\Inputs\Genders;
 use App\View\Components\Forms\Inputs\Input;
 use App\View\Components\Forms\Inputs\Password;
+use App\View\Components\Forms\Inputs\Tags;
 use App\View\Components\Forms\Inputs\Textarea;
 use App\View\Components\Forms\Label;
 use Illuminate\Support\Facades\Blade;
@@ -48,6 +49,7 @@ class CustomComponentsProvider extends ServiceProvider
         Blade::component('textarea', Textarea::class);
         Blade::component('flat-pickr', FlatPickr::class);
         Blade::component('genders', Genders::class);
+        Blade::component('tags', Tags::class);
 
 
         Blade::component('nav-nested-menu-item', NestedMenuItem::class);

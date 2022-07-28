@@ -25,8 +25,13 @@ class Input extends Component
     /** @var string */
     public $label;
 
-    public function __construct(string $name, string $id = null, string $type = 'text', ?string $value = '', ?string $label = null)
-    {
+    public function __construct(
+        string $name,
+        string $id = null,
+        string $type = 'text',
+        ?string $value = '',
+        ?string $label = null
+    ) {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->type = $type;

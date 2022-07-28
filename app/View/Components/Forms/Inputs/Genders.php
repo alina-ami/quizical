@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Forms\Input;
+namespace App\View\Components\Forms\Inputs;
 
 use Illuminate\View\Component;
 
@@ -28,6 +28,6 @@ class Genders extends Component
      */
     public function render()
     {
-        return view('components.forms.input.genders');
+        return view('components.forms.inputs.genders');
     }
 }
