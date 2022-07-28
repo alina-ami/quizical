@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\GoogleController;
 use App\Http\Controllers\Brands\Auth\LoginController;
 use App\Http\Controllers\Brands\HomeController;
 use App\Http\Controllers\Brands\QuestionController;
+use App\Http\Controllers\Web\HomeController as WebHomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,17 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [WebHomeController::class, 'index'])->name('home');
 
 Route::get('/login', [LoginController::class, 'login']);
-
-
-
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);
-
-
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 
