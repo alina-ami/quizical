@@ -22,12 +22,16 @@ class Input extends Component
     /** @var string */
     public $value;
 
-    public function __construct(string $name, string $id = null, string $type = 'text', ?string $value = '')
+    /** @var string */
+    public $label;
+
+    public function __construct(string $name, string $id = null, string $type = 'text', ?string $value = '', ?string $label = null)
     {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->type = $type;
         $this->value = old($name, $value ?? '');
+        $this->label = $label;
     }
 
     public function render(): View

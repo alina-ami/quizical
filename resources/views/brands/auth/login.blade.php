@@ -12,12 +12,9 @@
                         </div>
                         <div class="card-body">
                             <x-form :action="route('brands.auth.do-login')" method="POST">
-                                <div class="mb-3">
-                                    <x-email name="email" placeholder="Email" aria-label="Email" />
-                                </div>
-                                <div class="mb-3">
-                                    <x-password name="password" placeholder="Password" aria-label="Password" />
-                                </div>
+                                <x-email name="email" placeholder="Email" aria-label="Email" />
+                                <x-password name="password" placeholder="Password" aria-label="Password" />
+
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="rememberMe">
                                     <label class="form-check-label" for="rememberMe">Remember me</label>
