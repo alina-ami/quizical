@@ -8,6 +8,11 @@
 <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/threejs.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/orbit-controls.js') }}"></script>
+
+<script src="{{ asset('assets/js/plugins/choices.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/quill.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/flatpickr.min.js') }}"></script>
+
 <script>
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
