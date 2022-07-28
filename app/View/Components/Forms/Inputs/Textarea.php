@@ -18,11 +18,19 @@ class Textarea extends Component
     /** @var int */
     public $rows;
 
-    public function __construct(string $name, string $id = null, $rows = 3)
-    {
+    /** @var string */
+    public $label;
+
+    public function __construct(
+        string $name,
+        string $id = null,
+        $rows = 3,
+        string $label = ''
+    ) {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->rows = $rows;
+        $this->label = $label;
     }
 
     public function render(): View

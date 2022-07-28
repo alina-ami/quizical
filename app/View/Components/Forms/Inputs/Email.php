@@ -8,9 +8,9 @@ use Illuminate\Contracts\View\View;
 
 class Email extends Input
 {
-    public function __construct(string $name = 'email', string $id = null, ?string $value = '')
+    public function __construct(string $name = 'email', string $id = null, ?string $value = '', ?string $label = null)
     {
-        parent::__construct($name, $id, 'email', $value);
+        parent::__construct($name, $id, 'email', $value, $label);
     }
 
     public function render(): View
