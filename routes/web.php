@@ -20,21 +20,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WebHomeController::class, 'index'])->name('home');
-
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-Route::prefix('/')->as('web.auth.')->group(function () {
-    Route::get('/login', [WebLoginController::class, 'login'])->name('login');
-    Route::post('/login', [WebLoginController::class, 'doLogin'])->name('do-login');
-    Route::get('/login/google', [WebLoginController::class, 'google'])->name('google');
+Route::prefix('/')->as('web.')->group(function () {
+    Route::prefix('/')->as('auth.')->group(function () {
+        Route::get('/login', [WebLoginController::class, 'login'])->name('login');
+        Route::post('/login', [WebLoginController::class, 'doLogin'])->name('do-login');
+        Route::get('/login/google', [WebLoginController::class, 'google'])->name('google');
 
-    Route::get('/logout', [WebLoginController::class, 'logout'])->name('logout');
-    Route::get('/register', [WebLoginController::class, 'register'])->name('register');
-    Route::post('/register', [WebLoginController::class, 'doRegister'])->name('do-register');
+        Route::get('/logout', [WebLoginController::class, 'logout'])->name('logout');
+        Route::get('/register', [WebLoginController::class, 'register'])->name('register');
+        Route::post('/register', [WebLoginController::class, 'doRegister'])->name('do-register');
+    });
+
+    Route::get('/', [WebHomeController::class, 'index'])->name('home');
+    Route::get('/profile', [WebProfileController::class, 'profile'])->name('profile');
 });
 
-Route::get('/profile', [WebProfileController::class, 'profile'])->name('profile');
 
 
 Route::prefix('brands')->as('brands.')->group(function () {

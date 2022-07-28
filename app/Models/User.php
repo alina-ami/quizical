@@ -43,7 +43,7 @@ class User extends Authenticatable
         return redirect()->route(
             $this->hasRole('brand_manager')
                 ? 'brands.home'
-                : 'home'
+                : 'web.home'
         );
     }
 }

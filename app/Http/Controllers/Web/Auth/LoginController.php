@@ -45,7 +45,7 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('home');
+        return redirect()->route('web.home');
     }
 
     public function register(Request $request)
