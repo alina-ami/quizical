@@ -2,7 +2,7 @@
     <x-label :for="$name">{{ $label }}</x-label>
 @endif
 
-<div class="btn-group" role="group" id="{{ $id }}">
+<div class="" role="group" id="{{ $id }}">
     <input type="{{ $type }}" class="btn-check" id="male" value="male" name="{{ $name }}" autocomplete="off">
     <label class="btn btn-outline-primary" for="male">Male</label>
 
