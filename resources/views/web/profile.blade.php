@@ -19,19 +19,9 @@
 
                     <x-genders name="genders[]" label="I identify as:" type="radio" />
 
-                    <x-tags name="interests" label="And interesed in:" :options="[
-                        ['label' => 'Painting', 'value' => 1],
-                        ['label' => 'Fashion', 'value' => 2],
-                        ['label' => 'Skincare', 'value' => 3],
-                        ['label' => 'Hair', 'value' => 4],
-                    ]" />
+                    <x-tags name="interests" label="And interesed in:" :options="$interests" />
 
-                    <x-tags name="brands" label="These are some brands I like and use:" :options="[
-                        ['label' => 'Adore Me', 'value' => 1],
-                        ['label' => 'Outlines', 'value' => 2],
-                        ['label' => 'SavageXFenty', 'value' => 3],
-                        ['label' => 'Victoria Secret', 'value' => 1],
-                    ]" />
+                    <x-tags name="brands" label="These are some brands I like and use:" :options="$brands" />
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">

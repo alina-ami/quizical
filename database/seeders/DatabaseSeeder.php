@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             LevelSeeder::class,
             UserSeeder::class,
-            QuestionSeeder::class
+            QuestionSeeder::class,
+            InterestsSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
 
