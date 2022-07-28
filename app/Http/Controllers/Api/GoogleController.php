@@ -28,34 +28,26 @@ class GoogleController extends Controller
      */
     public function handleGoogleCallback()
     {
-        try {
+        $googleUser = Socialite::driver('google')->user();
+        $user = User::where('google_id', $googleUser->id)->firstOr(
+            fn () => User::create([
+                'name' => $googleUser->name,
+                'email' => $googleUser->email,
+                'google_id' => $googleUser->id,
+                'password' => encrypt('123456dummy')
+            ])->assignRole(
+                session('user_type') == 'brand'
+                    ? 'brand_manager'
+                    : 'customer'
+            )
+        );
 
-            $user = Socialite::driver('google')->user();
+        Auth::login($user);
 
-            $finduser = User::where('google_id', $user->id)->first();
-
-            if ($finduser){
-
-                Auth::login($finduser);
-
-                return redirect('/');
-
-            } else {
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'role_id' => Role::firstWhere('name', 'customer')->id,
-                    'email' => $user->email,
-                    'google_id'=> $user->id,
-                    'password' => encrypt('123456dummy')
-                ]);
-
-                Auth::login($newUser);
-
-                return redirect('/');
-            }
-
-        } catch (Exception $e) {
-            dd($e->getMessage());
-        }
+        return redirect()->route(
+            $user->hasRole('brand_manager')
+                ? 'brands.home'
+                : 'home'
+        );
     }
 }

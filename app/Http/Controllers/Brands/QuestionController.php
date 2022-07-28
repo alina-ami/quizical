@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Companies;
+namespace App\Http\Controllers\Brands;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return view('admin.questions.index');
+        return view('brands.questions.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('admin.questions.create');
+        return view('brands.questions.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        return view('admin.questions.show');
+        return view('brands.questions.show');
     }
 
     /**
@@ -57,7 +57,7 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.questions.edit');
+        return view('brands.questions.edit');
     }
 
     /**

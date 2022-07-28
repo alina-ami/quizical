@@ -1,4 +1,4 @@
-@extends('admin._layout.app')
+@extends('brands._layout.app')
 
 @section('content')
     TODO Question create form

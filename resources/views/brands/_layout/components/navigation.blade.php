@@ -14,8 +14,8 @@
     <div class="collapse navbar-collapse  w-auto h-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
 
-            <x-nav-simple-menu-item icon="fas fa-heart" label="Home" :url="route('home')" />
-            <x-nav-simple-menu-item icon="fa-solid fa-comment-dots" label="Questions" :url="route('companies.questions.index')" />
+            <x-nav-simple-menu-item icon="fas fa-heart" label="Home" :url="route('brands.home')" />
+            <x-nav-simple-menu-item icon="fa-solid fa-comment-dots" label="Questions" :url="route('brands.questions.index')" />
 
             <x-nav-separator-item label="Test Separator" />
 

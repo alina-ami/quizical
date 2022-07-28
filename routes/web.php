@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\GoogleController;
-use App\Http\Controllers\Companies\QuestionController;
+use App\Http\Controllers\Brands\Auth\LoginController;
+use App\Http\Controllers\Brands\HomeController;
+use App\Http\Controllers\Brands\QuestionController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +22,24 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/login', [LoginController::class, 'login']);
-Route::get('/register', [LoginController::class, 'register']);
+
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);
+
+
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-Route::prefix('companies')->as('companies.')->group(function () {
-    Route::resource('questions', QuestionController::class);
+
+
+Route::prefix('brands')->as('brands.')->group(function () {
+    Route::prefix('auth')->as('auth.')->group(function () {
+        Route::get('/login', [LoginController::class, 'login'])->name('login');
+        Route::get('/login/google', [LoginController::class, 'google'])->name('google');
+
+        Route::get('/register', [LoginController::class, 'register'])->name('register');
+    });
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/', [HomeController::class, 'index'])->name('home');
+        Route::resource('questions', QuestionController::class);
+    });
 });
