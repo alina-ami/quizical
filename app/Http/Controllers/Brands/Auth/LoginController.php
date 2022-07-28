@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Brands\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Brans\Auth\LoginRequest;
+use App\Http\Requests\Brands\Auth\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;

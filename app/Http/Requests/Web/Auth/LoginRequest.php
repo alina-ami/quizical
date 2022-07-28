@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Brans\Auth;
+namespace App\Http\Requests\Web\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 

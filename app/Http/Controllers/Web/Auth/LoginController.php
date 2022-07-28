@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Web\Auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Brans\Auth\LoginRequest;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Requests\Web\Auth\LoginRequest;
+use App\Http\Requests\Web\Auth\RegisterRequest;
 
 class LoginController extends Controller
 {
@@ -31,7 +32,7 @@ class LoginController extends Controller
             $user = User::where('email', $request->email)->first();
             Auth::login($user, true);
 
-            return $user->getHomepageRedirect();;
+            return $user->getHomepageRedirect();
         }
 
         return redirect()
@@ -50,5 +51,20 @@ class LoginController extends Controller
     public function register(Request $request)
     {
         return view('web.auth.register');
+    }
+
+    public function doRegister(RegisterRequest $request)
+    {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        $user->assignRole('customer');
+
+        Auth::login($user, true);
+
+        return $user->getHomepageRedirect();
     }
 }
