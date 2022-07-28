@@ -9,20 +9,21 @@
                 <hr class="horizontal dark my-3">
 
                 <x-textarea label="Question" name="title" />
-                <x-input label="Due Date" name="due_at" class="datetimepicker" placeholder="Due Date" />
-                <x-genders label="Target Genders" name="genders[]" type="checkbox" />
-
                 <div class="row">
-                    <div class="col-md-4">
-                        <x-input type="number" name="min_age" label="Min age" placeholder="Min age" />
+                    <div class="col-md-6">
+                        <x-input label="Due Date" name="due_at" class="datetimepicker" placeholder="Due Date" />
                     </div>
-                    <div class="col-md-4">
-                        <x-input type="number" name="max_age" label="Max age" placeholder="Max age" />
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <x-input type="number" name="min_reach" label="Target Ansers" placeholder="Target Answers" />
                     </div>
+                    <div class="col-md-6">
+                        <x-input type="number" name="min_age" label="Min age" placeholder="Min age" />
+                    </div>
+                    <div class="col-md-6">
+                        <x-input type="number" name="max_age" label="Max age" placeholder="Max age" />
+                    </div>
                 </div>
+                <x-genders label="Target Genders" name="genders[]" type="checkbox" />
 
                 <div class="d-flex justify-content-end mt-4">
                     <button type="reset" class="btn btn-light m-0">Cancel</button>
