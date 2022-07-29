@@ -15,29 +15,28 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profile()
+    public function profile(Request $request)
     {
         return view('web.profile')->with(
             'interests',
-            Interest::all()->map(fn($item) => ['label' => $item->name, 'value' => $item->id])->toArray()
+            Interest::all()->map(fn ($item) => ['label' => $item->name, 'value' => $item->id])->toArray()
         )->with(
             'brands',
-            Brand::all()->map(fn($item) => ['label' => $item->name, 'value' => $item->id])->toArray()
-        );
+            Brand::all()->map(fn ($item) => ['label' => $item->name, 'value' => $item->id])->toArray()
+        )->with('user', $request->user());
     }
 
     public function store(UserProfileRequest $request)
     {
-        $user = auth()->user();
-
+        $user = $request->user();
         $user->update([
             'name' => $request->name,
             'age' => $request->age,
-            'gender' => $request->genders[0],
+            'gender' => $request->gender,
             'interests' => $request->interests,
             'brands_liked' => $request->brands,
         ]);
 
-        return $user->getHomepageRedirect();
+        return redirect()->route('web.home');
     }
 }

@@ -3,10 +3,13 @@
 namespace App\View\Components\Forms\Inputs;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Str;
+
 
 class Tags extends Component
 {
     public string $name;
+    public string $safeName;
     public string $id;
     public array $values;
     public array $options;
@@ -21,13 +24,15 @@ class Tags extends Component
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
-        $this->values = old($name, $values ?? []);
+
+        $this->safeName = Str::replace('[', '', Str::replace(']', '', $name));
+        $this->values = old($this->safeName, $values ?? []);
+
         $this->options = $options;
         $this->label = $label;
 
-
-        $this->options = array_map(function ($item) use ($values) {
-            $item['selected'] = in_array($item['value'], $values);
+        $this->options = array_map(function ($item) {
+            $item['selected'] = $this->values && in_array($item['value'], $this->values);
 
             return $item;
         }, $this->options);

@@ -21,6 +21,12 @@ class User extends Authenticatable
 
     protected $guarded = [];
 
+    protected $casts = [
+        'interests' => 'array',
+        'brands_liked' => 'array',
+    ];
+
+
     public function password(): Attribute
     {
         return Attribute::make(

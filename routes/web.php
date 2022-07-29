@@ -26,7 +26,7 @@ use App\Http\Controllers\Brands\Auth\LoginController as BrandsLoginController;
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 Route::prefix('/')->as('web.')->group(function () {
-    Route::prefix('/')->as('auth.')->group(function () {
+    Route::as('auth.')->group(function () {
         Route::get('/login', [WebLoginController::class, 'login'])->name('login');
         Route::post('/login', [WebLoginController::class, 'doLogin'])->name('do-login');
         Route::get('/login/google', [WebLoginController::class, 'google'])->name('google');
@@ -41,6 +41,8 @@ Route::prefix('/')->as('web.')->group(function () {
         Route::get('/{question}/answer', [WebQuestionController::class, 'answer'])->name('answer');
         Route::post('/{question}/submit-answer', [WebQuestionController::class, 'storeAnswer'])->name('store-answer');
     });
+
+
     Route::prefix('/profile')->as('profile.')->group(function () {
         Route::get('/', [WebProfileController::class, 'profile'])->name('create');
         Route::post('/', [WebProfileController::class, 'store'])->name('store');

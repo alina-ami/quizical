@@ -30,6 +30,7 @@ class Genders extends Component
         public ?string $label = null,
     ) {
         $this->id = $id ?? $name;
+        $this->value = old($name, $value);
     }
 
     /**
@@ -44,6 +45,10 @@ class Genders extends Component
 
     public function isSelected($value)
     {
+        if (!$this->value) {
+            return '';
+        }
+
         if (is_string($this->value)) {
             return $this->value == $value ? 'checked' : '';
         }
