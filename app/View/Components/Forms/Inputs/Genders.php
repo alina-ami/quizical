@@ -8,6 +8,16 @@ class Genders extends Component
 {
     public string $id;
 
+
+    public array $genderValues = [
+        'male',
+        'female',
+        'non-binary',
+        'transgender',
+        'intersex',
+        'unspecified',
+    ];
+
     /**
      * Create a new component instance.
      *
@@ -16,7 +26,8 @@ class Genders extends Component
     public function __construct(
         public string $type = 'radio',
         public string $name,
-        public ?string $label = null
+        public $value = '',
+        public ?string $label = null,
     ) {
         $this->id = $id ?? $name;
     }
@@ -29,5 +40,14 @@ class Genders extends Component
     public function render()
     {
         return view('components.forms.inputs.genders');
+    }
+
+    public function isSelected($value)
+    {
+        if (is_string($this->value)) {
+            return $this->value == $value ? 'checked' : '';
+        }
+
+        return in_array($value, $this->value) ? 'checked' : '';
     }
 }

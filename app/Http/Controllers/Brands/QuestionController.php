@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Brands;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Brands\Questions\StoreQuestionRequest;
+use App\Http\Requests\Brands\Questions\UpdateQuestionRequest;
 use App\Models\Question;
-use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
@@ -58,9 +58,17 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Question $question)
     {
-        return view('brands.questions.show');
+        return view('brands.questions.show')->with(
+            'question',
+            $question->loadCount('answers')
+        )->with(
+            'answers',
+            $question->answers()
+                ->latest()
+                ->paginate(15)
+        );
     }
 
     /**
@@ -69,9 +77,10 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Question $question)
     {
-        return view('brands.questions.edit');
+        return view('brands.questions.edit')
+            ->with('question', $question);
     }
 
     /**
@@ -81,9 +90,11 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateQuestionRequest $request, Question $question)
     {
-        //
+        $question->update($request->validated());
+
+        return redirect()->route('brands.questions.show', $question->id);
     }
 
     /**

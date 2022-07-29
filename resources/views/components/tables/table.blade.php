@@ -6,10 +6,14 @@
                     @foreach ($headers as $header)
                         <th class="text-secondary text-xs font-weight-bolder opacity-7">{{ $header }}</th>
                     @endforeach
-                    <th class="text-secondary text-xs font-weight-bolder opacity-7">Actions</th>
                 </tr>
             </thead>
             <tbody>
+                @if ($data->isEmpty())
+                    <tr>
+                        <td class="text-muted text-center text-sm" colspan="{{ count($headers) }}">{{ $noResultsMessage }}</td>
+                    </tr>
+                @endif
                 {{ $slot }}
             </tbody>
         </table>
