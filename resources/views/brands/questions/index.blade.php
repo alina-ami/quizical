@@ -12,7 +12,7 @@
             <tr>
                 <td><a href="{{ route('brands.questions.show', $item->id) }}">{{ $item->title }}</a></td>
                 <td>
-                    <x-question-reaction :value="$item->title" />
+                    <x-question-reaction :value="$item->sentiment" />
                 </td>
                 <td class="text-end">{{ strlen($item->title) }}</td>
                 <td class="text-end">{{ $item->due_at->format('Y/m/d') }}</td>

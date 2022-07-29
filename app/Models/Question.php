@@ -24,4 +24,21 @@ class Question extends Model
     {
         return $this->hasMany(Answer::class);
     }
+
+    public function getSentimentAttribute()
+    {
+        if (!$this->answers()->count()) {
+            return 'not_applicable';
+        }
+
+        $avgCompound = $this->answers()->avg('sentiment->compound');
+
+        if ($avgCompound >= 0.05) {
+            return 'positive';
+        } else if ($avgCompound <= -0.05) {
+            return 'negative';
+        }
+
+        return 'neutral';
+    }
 }

@@ -6,12 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "davmixcool/php-sentiment-analyzer": "^1.2",
         "doctrine/dbal": "^3.3",
+        "donatello-za/rake-php-plus": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.15",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
+        "php-science/textrank": "^1.2",
         "spatie/laravel-permission": "^5.5"
     },
     "require-dev": {
