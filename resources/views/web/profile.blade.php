@@ -1,4 +1,4 @@
-@extends('web._layout.min-app')
+@extends('web._layout.app')
 
 @section('content')
     <div class="row">

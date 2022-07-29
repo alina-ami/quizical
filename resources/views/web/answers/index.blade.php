@@ -1,7 +1,7 @@
 @extends('web._layout.app')
 
 @section('content')
-    <div class="offset-md-1">
+    <div class="">
         <h4 class="mb-4">Your answers</h4>
 
         <div class="row mb-4 ms-1">
