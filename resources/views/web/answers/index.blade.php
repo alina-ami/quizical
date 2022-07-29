@@ -39,14 +39,28 @@
                         <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2">
                             <div class="w-100">
                                 <div class="d-flex mb-2">
-                                    <span class="me-2 text-sm font-weight-bold">You need 15 more points to reach the next
+                                    <span class="me-2 text-sm font-weight-bold">You need 25 more points to reach the next
                                         level</span>
-                                    <span class="ms-auto text-sm font-weight-bold">3%</span>
+                                    <span class="ms-auto text-sm font-weight-bold">40%</span>
                                 </div>
                                 <div>
                                     <div class="progress progress-md">
-                                        <div class="progress-bar bg-gradient-success w-5" role="progressbar"
+                                        <div class="progress-bar bg-gradient-success w-40" role="progressbar"
                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2">
+                            <div class="w-100">
+                                <div class="d-flex mb-2">
+                                    <span class="me-2 text-sm font-weight-bold">You need 7 more points to get your next reward!</span>
+                                    <span class="ms-auto text-sm font-weight-bold">75%</span>
+                                </div>
+                                <div>
+                                    <div class="progress progress-md">
+                                        <div class="progress-bar bg-gradient-info w-75" role="progressbar"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -56,14 +70,14 @@
             </div>
 
             <div class="col-12, col-md-4 mt-4">
-                <div class="col-12 card card-background card-background-mask-info mb-4">
+                <div class="col-12 card card-background card-background-mask-primary mb-4">
                     <div class="card-body d-flex flex-column justify-content-center text-center">
                         <h4 class="text-white mb-0 mt-2 up">Answers</h4>
                         <h4 class="text-white mb-0 up">{{ $answersCount }}</h4>
                     </div>
                 </div>
 
-                <div class="col-12 card card-background card-background-mask-info mb-4">
+                <div class="col-12 card card-background card-background-mask-primary mb-4">
                     <div class="card-body d-flex flex-column justify-content-center text-center">
                         <h4 class="text-white mb-0 mt-2 up">Total of points</h4>
                         <h4 class="text-white mb-0 up">{{ $user->total_points_earned }}</h4>
@@ -76,7 +90,7 @@
             <x-table :headers="['Question', 'Answer', 'Points earned']" :data="$answers">
                 @foreach ($answers as $item)
                     <tr>
-                        <td>{{ $item->question_id }}</td>
+                        <td>{{ $item->question->title }}</td>
                         <td>{{ $item->answer }}</td>
                         <td class="text-end">{{ $item->points_earned }}</td>
                         {{-- <td class="align-middle">
