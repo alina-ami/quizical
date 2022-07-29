@@ -9,28 +9,24 @@ use Illuminate\View\Component;
 
 class Textarea extends Component
 {
-    /** @var string */
-    public $name;
-
-    /** @var string */
-    public $id;
-
-    /** @var int */
-    public $rows;
-
-    /** @var string */
-    public $label;
+    public string $id;
+    public string $name;
+    public string $value;
+    public string $label;
+    public int $rows;
 
     public function __construct(
         string $name,
         string $id = null,
         $rows = 3,
-        string $label = ''
+        string $label = '',
+        string $value = ''
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->rows = $rows;
         $this->label = $label;
+        $this->value = $value;
     }
 
     public function render(): View

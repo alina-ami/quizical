@@ -4,7 +4,7 @@
     @endif
 
     <textarea name="{{ $name }}" id="{{ $id }}" rows="{{ $rows }}"
-        {{ $attributes->merge(['class' => 'form-control']) }}>{{ old($name, $slot) }}</textarea>
+        {{ $attributes->merge(['class' => 'form-control']) }}>{{ old($name, $value ?: $slot) }}</textarea>
 
     <x-error :field="$name" />
 </div>
