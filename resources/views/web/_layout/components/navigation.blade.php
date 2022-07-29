@@ -1,21 +1,74 @@
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
-  <div class="sidenav-header">
-    <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-    <a class="navbar-brand m-0" href="{{ route('web.home') }}">
-      <img src="{{ asset('assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-      <span class="ms-1 font-weight-bold">ReachMe</span>
-    </a>
-  </div>
+<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 mt-4">
+    <div class="container blur blur-rounded py-3 px-5">
+        <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3" href="{{ route('web.home') }}">
+            <img src="{{ asset('assets/img/logo-ct-dark.png') }}" class="" height="30" alt="main_logo">
+            ReachMe
+        </a>
+        <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+            </span>
+        </button>
+        <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
+            <ul class="navbar-nav navbar-nav-hover mx-auto">
+                <li class="nav-item mx-2">
+                    <a href="{{ route('web.home') }}" class="nav-link ps-2 cursor-pointer align-items-center">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="{{ route('web.home') }}" class="nav-link ps-2 cursor-pointer align-items-center">
+                        Prizes
+                    </a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="{{ route('web.home') }}" class="nav-link ps-2 cursor-pointer align-items-center">
+                        About
+                    </a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="{{ route('web.home') }}" class="nav-link ps-2 cursor-pointer align-items-center">
+                        Contact
+                    </a>
+                </li>
+                @auth
+                    <li class="nav-item mx-2">
+                        <a href="{{ route('web.questions.index') }}"
+                            class="btn btn-sm bg-gradient-primary btn-round mb-0 me-1">
+                            Start winning
+                        </a>
+                    </li>
+                @endauth
+            </ul>
+            @guest
+                <ul class="navbar-nav d-lg-block d-none">
+                    <li class="nav-item d-inline">
+                        <a href="{{ route('web.auth.login') }}" class="btn btn-sm btn-round mb-0 me-1">Register</a>
+                    </li>
+                    <li class="nav-item d-inline">
+                        <a href="{{ route('web.auth.login') }}"
+                            class="btn btn-sm bg-gradient-primary btn-round mb-0 me-1">Login</a>
+                    </li>
+                </ul>
+            @endguest
 
-  <hr class="horizontal dark mt-0">
-
-  <div class="collapse navbar-collapse  w-auto h-auto" id="sidenav-collapse-main">
-    <ul class="navbar-nav">
-
-      <x-nav-simple-menu-item icon="fas fa-heart" label="Home" :url="route('web.home')" />
-      <x-nav-simple-menu-item icon="fa-solid fa-comment-dots" label="Questions" :url="route('web.home')" />
-      <x-nav-simple-menu-item icon="fa-solid fa-comment-dots" label="Profile" :url="route('web.profile.create')" />
-      <x-nav-simple-menu-item icon="fa-solid fa-arrow-right-from-bracket" label="Sign Out" :url="route('web.auth.logout')" />
-    </ul>
-  </div>
-</aside>
+            @auth
+            <ul class="navbar-nav d-lg-block d-none">
+                <li class="nav-item d-inline">
+                    <a href="{{ route('web.profile.create') }}" class="mb-0 me-1 mr-3">Hello,
+                        {{ auth()->user()->name }}</a>
+                </li>
+                <li class="nav-item d-inline">
+                    <a href="{{ route('web.auth.logout') }}">
+                        <i class="fa-solid fa-arrow-right-from-bracket me-sm-1"></i>
+                    </a>
+                </li>
+            </ul>
+            @endauth
+        </div>
+    </div>
+</nav>

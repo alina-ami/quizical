@@ -10,26 +10,33 @@ use DonatelloZa\RakePlus\RakePlus;
 use App\Http\Controllers\Controller;
 use PhpScience\TextRank\TextRankFacade;
 use App\Http\Requests\Web\AnswerRequest;
+use Illuminate\Database\Eloquent\Builder;
 use PhpScience\TextRank\Tool\StopWords\English;
 
 class QuestionController extends Controller
 {
-    public function answer(Request $request, Question $question)
+
+    public function index(Request $request)
     {
-        return view('web.question.answer')
+        $questions = Question::whereDoesntHave(
+            'answers',
+            fn (Builder $query) => $query->where('user_id', $request->user()->id)
+        )->with('brand')->paginate(6);
+
+        return view('web.questions.index')
+            ->with('questions', $questions);
+    }
+
+    public function show(Question $question)
+    {
+        return view('web.questions.show')
             ->with('question', $question);
     }
 
-    public function storeAnswer(AnswerRequest $request, Question $question)
+    public function update(AnswerRequest $request, Question $question)
     {
-        $user = auth()->user();
-
         $text = $request->answer;
-
         $keywords = $this->getTextKeywords($text);
-        $sentiment = $this->getTextSentiment($text);
-        $summary = $this->getTextSummary($text);
-
         $pointsEarned = $question->points_for_answer;
 
         if (count($keywords) > 3) {
@@ -38,21 +45,27 @@ class QuestionController extends Controller
 
         $answer = Answer::create([
             'question_id' => $question->id,
-            'user_id' => $user->id,
+            'user_id' => $request->user()->id,
             'answer' => $text,
             'keywords' => $keywords,
-            'sentiment' => $sentiment,
-            'summary' => $summary,
+            'sentiment' => $this->getTextSentiment($text),
+            'summary' => $this->getTextSummary($text),
             'points_earned' => $pointsEarned,
         ]);
+        $request->user()->increment('total_points_earned', $answer->points_earned);
 
-        $user->increment('total_points_earned', $answer->points_earned);
+        return redirect()->route('web.questions.success', $question->id);
+    }
 
-        return view('web.question.post-answer')
-            ->with([
-                'question' => $question,
-                'answer' => $answer,
-            ]);
+    public function success(Request $request, Question $question)
+    {
+        $answer = $question->answers()
+            ->where('user_id', $request->user()->id)
+            ->first();
+
+        return view('web.questions.success')
+            ->with('question', $question)
+            ->with('answer', $answer);
     }
 
     private function getTextKeywords(string $text): array

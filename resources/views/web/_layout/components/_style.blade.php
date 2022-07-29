@@ -5,7 +5,14 @@
 <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet">
 
-<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.2/css/all.min.css">
 <link id="pagestyle" href="{{ asset('assets/css/soft-ui-dashboard.min.css') }}" rel="stylesheet" />
 
+<style>
+    @media (min-width:720px) {
+        .main-content .content {
+            margin-top: 150px;
+        }
+    }
+</style>
 @stack('style')

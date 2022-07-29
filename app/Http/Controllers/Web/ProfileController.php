@@ -17,7 +17,7 @@ class ProfileController extends Controller
      */
     public function profile(Request $request)
     {
-        return view('web.profile')->with(
+        return view('web.profile.index')->with(
             'interests',
             Interest::all()->map(fn ($item) => ['label' => $item->name, 'value' => $item->id])->toArray()
         )->with(

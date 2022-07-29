@@ -37,10 +37,8 @@ Route::prefix('/')->as('web.')->group(function () {
     });
 
     Route::get('/', [WebHomeController::class, 'index'])->name('home');
-    Route::prefix('/questions')->as('questions.')->group(function () {
-        Route::get('/{question}/answer', [WebQuestionController::class, 'answer'])->name('answer');
-        Route::post('/{question}/submit-answer', [WebQuestionController::class, 'storeAnswer'])->name('store-answer');
-    });
+    Route::resource('questions', WebQuestionController::class)->only('index', 'show', 'update');
+    Route::get('questions/{question}/success', [WebQuestionController::class, 'success'])->name('questions.success');
 
 
     Route::prefix('/profile')->as('profile.')->group(function () {
