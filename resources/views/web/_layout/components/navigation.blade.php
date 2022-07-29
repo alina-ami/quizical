@@ -47,7 +47,7 @@
             @guest
                 <ul class="navbar-nav d-lg-block d-none">
                     <li class="nav-item d-inline">
-                        <a href="{{ route('web.auth.login') }}" class="btn btn-sm btn-round mb-0 me-1">Register</a>
+                        <a href="{{ route('web.auth.register') }}" class="btn btn-sm btn-round mb-0 me-1">Register</a>
                     </li>
                     <li class="nav-item d-inline">
                         <a href="{{ route('web.auth.login') }}"
@@ -60,7 +60,7 @@
             <ul class="navbar-nav d-lg-block d-none">
                 <li class="nav-item d-inline">
                     Hello,
-                    <a href="{{ route('web.profile.index') }}" class="mb-0 me-1 mr-3">
+                    <a href="{{ route('web.profile.index') }}" class="mb-0 me-1 mr-3 text-primary">
                         {{ auth()->user()->name }}</a>
                 </li>
                 <li class="nav-item d-inline">
