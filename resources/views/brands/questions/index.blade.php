@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <x-table :headers="['Question', 'Review', 'Responses', 'Due Date', 'Actions']" :data="$questions">
+    <x-table :headers="['Question', 'Sentiment', 'Responses', 'Due Date', 'Actions']" :data="$questions">
         @foreach ($questions as $item)
             <tr>
                 <td><a href="{{ route('brands.questions.show', $item->id) }}">{{ $item->title }}</a></td>

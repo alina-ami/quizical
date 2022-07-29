@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Brands;
 
+use GuzzleHttp\Client;
+use App\Models\Question;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Brands\Questions\StoreQuestionRequest;
 use App\Http\Requests\Brands\Questions\UpdateQuestionRequest;
-use App\Models\Question;
 
 class QuestionController extends Controller
 {
@@ -60,15 +62,52 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
+        $answersSentiment = $question->answers->reduce(function($results, $answer) {
+            $results[$answer->sentiment['type']] += 1;
+            $results['total'] +=1;
+
+            return $results;
+        }, [
+            'positive' => 0,
+            'negative' => 0,
+            'neutral' => 0,
+            'total' => 0,
+        ]);
+
+
+        if($answersSentiment['total']){
+            $sentimentPercentages = [
+                "positive" => $answersSentiment["positive"] / $answersSentiment["total"] * 100,
+                "negative" => $answersSentiment["negative"] / $answersSentiment["total"] * 100,
+                "neutral" => $answersSentiment["neutral"] / $answersSentiment["total"] * 100,
+            ];
+        } else {
+            $sentimentPercentages = ["positive" => 0,"negative" => 0,"neutral" => 0];
+        }
+
+        $client = new Client();
+
+        $response = $client->post('https://quickchart.io/wordcloud', [
+            'json' => [
+                "text" => $question->answers->pluck('answer')->implode(" ") ?: 'No results',
+                "removeStopwords" => true,
+                "width" => 500,
+                "height" => 300,
+                "format" => 'png',
+                "maxNumWords" => 20
+            ]
+        ]);
+
+        $topKeywordsImage = $response->getBody();
+
         return view('brands.questions.show')->with(
             'question',
             $question->loadCount('answers')
-        )->with(
-            'answers',
-            $question->answers()
-                ->latest()
-                ->paginate(15)
-        );
+        )->with([
+            'answers' => $question->answers()->latest()->paginate(15),
+            'topKeywordsImage' => $topKeywordsImage,
+            'sentimentPercentages' => $sentimentPercentages,
+        ]);
     }
 
     /**
