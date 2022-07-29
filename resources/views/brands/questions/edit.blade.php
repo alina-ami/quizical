@@ -29,7 +29,7 @@
 
                 <div class="d-flex justify-content-end mt-4">
                     <button type="reset" class="btn btn-light m-0">Cancel</button>
-                    <button type="submit" class="btn bg-gradient-primary m-0 ms-2">Update</button>
+                    <button type="submit" class="btn bg-gradient-primary m-0 ms-2">Update Question</button>
                 </div>
             </x-form>
         </div>
