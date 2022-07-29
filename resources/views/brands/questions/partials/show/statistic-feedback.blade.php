@@ -1,4 +1,7 @@
 <div class="card h-100">
+    <div class="card-header pb-0 p-3">
+        <h6 class="mb-0">Reviews</h6>
+    </div>
     <div class="card-body pb-0 p-3">
         <ul class="list-group">
             <li class="list-group-item border-0 d-flex align-items-center px-0 mb-0">
@@ -44,5 +47,10 @@
                 </div>
             </li>
         </ul>
+    </div>
+    <div class="card-footer pt-0 p-3 d-flex align-items-center">
+        <p class="text-sm">
+            Looks like you have a positive feedback from your question.
+        </p>
     </div>
 </div>

@@ -45,9 +45,9 @@ class Genders extends Component
     public function isSelected($value)
     {
         if (is_string($this->value)) {
-            return $this->value == $value;
+            return $this->value == $value ? 'checked' : '';
         }
 
-        return in_array($value, $this->value);
+        return in_array($value, $this->value) ? 'checked' : '';
     }
 }

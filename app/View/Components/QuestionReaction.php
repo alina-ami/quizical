@@ -1,11 +1,10 @@
 <?php
 
-namespace App\View\Components\Tables;
+namespace App\View\Components;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\View\Component;
 
-class Table extends Component
+class QuestionReaction extends Component
 {
     /**
      * Create a new component instance.
@@ -13,9 +12,7 @@ class Table extends Component
      * @return void
      */
     public function __construct(
-        public array $headers,
-        public $data,
-        public string $noResultsMessage = 'No results available.'
+        public string $value
     ) {
     }
 
@@ -26,7 +23,6 @@ class Table extends Component
      */
     public function render()
     {
-        return view('components.tables.table')
-            ->with('data', $this->data);
+        return view('components.question-reaction');
     }
 }

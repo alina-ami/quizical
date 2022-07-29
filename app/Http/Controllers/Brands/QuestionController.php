@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Brands\Questions\StoreQuestionRequest;
 use App\Http\Requests\Brands\Questions\UpdateQuestionRequest;
 use App\Models\Question;
-use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
@@ -61,8 +60,15 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        return view('brands.questions.show')
-            ->with('question', $question);
+        return view('brands.questions.show')->with(
+            'question',
+            $question->loadCount('answers')
+        )->with(
+            'answers',
+            $question->answers()
+                ->latest()
+                ->paginate(15)
+        );
     }
 
     /**
