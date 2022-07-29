@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\ProfileController as WebProfileController;
 use App\Http\Controllers\Web\Auth\LoginController as WebLoginController;
 use App\Http\Controllers\Web\QuestionController as WebQuestionController;
 use App\Http\Controllers\Brands\Auth\LoginController as BrandsLoginController;
+use App\Http\Controllers\Web\AnswersController as WebAnswersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,12 @@ Route::prefix('/')->as('web.')->group(function () {
     Route::prefix('/profile')->as('profile.')->group(function () {
         Route::get('/', [WebProfileController::class, 'profile'])->name('create');
         Route::post('/', [WebProfileController::class, 'store'])->name('store');
+    });
+
+    Route::prefix('/answers')->as('answers.')->group(function () {
+        Route::get('/', [WebAnswersController::class, 'index'])->name('index');
+        Route::post('/{answer}', [WebAnswersController::class, 'show'])->name('show');
+        Route::post('/{answer}', [WebAnswersController::class, 'destory'])->name('destory');
     });
 });
 

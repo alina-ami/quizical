@@ -1,7 +1,7 @@
 @extends('web._layout.app')
 
 @section('content')
-    <div class="offset-1">
+    <div class="offset-md-1">
         <h2 class="mb-1">Hello</h2>
         <h2 class="mb-4">{{ Auth::user()->name }}</h2>
 

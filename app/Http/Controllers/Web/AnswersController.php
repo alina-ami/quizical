@@ -17,7 +17,9 @@ class AnswersController extends Controller
             ->latest()
             ->paginate(12);
 
-        return view('web.answers.index')->with('answers', $answers);
+        $answersCount = Answer::where('user_id', 2)->count();
+
+        return view('web.answers.index')->with('answers', $answers)->with('answersCount', $answersCount)->with('user', $user);
     }
 
     /**
@@ -29,5 +31,17 @@ class AnswersController extends Controller
     public function show($id)
     {
         return view('web.answers.show');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Answer $answer)
+    {
+        $question->delete();
+        return redirect()->back();
     }
 }
