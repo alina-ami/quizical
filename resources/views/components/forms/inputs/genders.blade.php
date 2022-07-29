@@ -22,3 +22,4 @@
     <input type="{{ $type }}" class="btn-check" id="Unspecified" value="unspecified" name="{{ $name }}" autocomplete="off" {{ $isSelected('unspecified') }}>
     <label class="btn btn-outline-primary" for="Unspecified">Unspecified</label>
 </div>
+<x-error :field="$name" />

@@ -5,7 +5,7 @@
 
     <select {{ $attributes->merge(['class' => 'form-control']) }} name="{{ $name }}" id="{{ $id }}"
         multiple></select>
-    <x-error :field="$name" />
+    <x-error :field="$safeName" />
 </div>
 
 

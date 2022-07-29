@@ -16,7 +16,7 @@ class UserProfileRequest extends FormRequest
         return [
             'name' => 'required',
             'age' => 'required|integer',
-            'genders' => 'required|array',
+            'gender' => 'required|string',
             'interests' => 'required|array',
             'brands' => 'required|array',
         ];
