@@ -22,11 +22,11 @@
                 <div class="w-100">
                     <div class="d-flex mb-2">
                         <span class="me-2 text-sm font-weight-bold text-capitalize">Neutral reviews</span>
-                        <span class="ms-auto text-sm font-weight-bold">{{$sentimentPercentages["negative"]}}%</span>
+                        <span class="ms-auto text-sm font-weight-bold">{{$sentimentPercentages["neutral"]}}%</span>
                     </div>
                     <div>
                         <div class="progress progress-md">
-                            <div class="progress-bar bg-gradient-dark w-{{$sentimentPercentages["negative"]}}" role="progressbar" aria-valuenow="10"
+                            <div class="progress-bar bg-gradient-dark w-{{$sentimentPercentages["neutral"]}}" role="progressbar" aria-valuenow="10"
                                 aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
@@ -36,11 +36,11 @@
                 <div class="w-100">
                     <div class="d-flex mb-2">
                         <span class="me-2 text-sm font-weight-bold text-capitalize">Negative reviews</span>
-                        <span class="ms-auto text-sm font-weight-bold">{{$sentimentPercentages["neutral"]}}%</span>
+                        <span class="ms-auto text-sm font-weight-bold">{{$sentimentPercentages["negative"]}}%</span>
                     </div>
                     <div>
                         <div class="progress progress-md">
-                            <div class="progress-bar bg-gradient-danger w-{{$sentimentPercentages["neutral"]}}" role="progressbar" aria-valuenow="5"
+                            <div class="progress-bar bg-gradient-danger w-{{$sentimentPercentages["negative"]}}" role="progressbar" aria-valuenow="5"
                                 aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>

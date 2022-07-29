@@ -75,15 +75,17 @@ class QuestionController extends Controller
         ]);
 
 
-        if($answersSentiment['total']){
+        if ($answersSentiment['total']){
             $sentimentPercentages = [
-                "positive" => $answersSentiment["positive"] / $answersSentiment["total"] * 100,
-                "negative" => $answersSentiment["negative"] / $answersSentiment["total"] * 100,
-                "neutral" => $answersSentiment["neutral"] / $answersSentiment["total"] * 100,
+                "positive" => intval($answersSentiment["positive"] / $answersSentiment["total"] * 100),
+                "negative" => intval($answersSentiment["negative"] / $answersSentiment["total"] * 100),
+                "neutral" => intval($answersSentiment["neutral"] / $answersSentiment["total"] * 100),
             ];
         } else {
             $sentimentPercentages = ["positive" => 0,"negative" => 0,"neutral" => 0];
         }
+
+        // dd($answersSentiment);
 
         $client = new Client();
 
