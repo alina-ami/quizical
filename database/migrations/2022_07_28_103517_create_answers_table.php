@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreignId('question_id');
             $table->foreignId('user_id');
             $table->text('answer')->nullable();
+            $table->json('keywords')->nullable();
+            $table->json('sentiment')->nullable();
+            $table->json('summary')->nullable();
             $table->integer('points_earned')->nullable();
             $table->timestamps();
         });

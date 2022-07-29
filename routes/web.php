@@ -1,14 +1,16 @@
 <?php
 
+use Sentiment\Analyzer;
+use Illuminate\Support\Facades\Route;
+use PhpScience\TextRank\TextRankFacade;
 use App\Http\Controllers\Api\GoogleController;
-use App\Http\Controllers\Brands\Auth\LoginController as BrandsLoginController;
-use App\Http\Controllers\Web\Auth\LoginController as WebLoginController;
 use App\Http\Controllers\Brands\HomeController;
 use App\Http\Controllers\Brands\QuestionController;
 use App\Http\Controllers\Web\HomeController as WebHomeController;
 use App\Http\Controllers\Web\ProfileController as WebProfileController;
+use App\Http\Controllers\Web\Auth\LoginController as WebLoginController;
 use App\Http\Controllers\Web\QuestionController as WebQuestionController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Brands\Auth\LoginController as BrandsLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,4 +63,57 @@ Route::prefix('brands')->as('brands.')->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::resource('questions', QuestionController::class);
     });
+});
+
+
+Route::get('analyse-text', function () {
+    $text = "I weigh 115 but my bust is usually around 32DDD, bigger actually since I'm currently breastfeeding... so I ordered a medium. I should have probably ordered a small or even extra small. The waist was pretty large. Like there is a giant gap. I just tied the back stap together tighter so I can still make it work. but when I get a different color, which I intent to because of how beautiful this set is, I will definitely get a size smaller. Plus this hides love handles and the mom tummy like a charm.";
+    // $tokens = tokenize($text);
+
+    // $rake = rake($tokens);
+    // $results = $rake->getKeywordScores();
+
+    // return response()->json($results);
+
+    // $text = "Criteria of compatibility of a system of linear Diophantine equations, " .
+    //     "strict inequations, and nonstrict inequations are considered. Upper bounds " .
+    //     "for components of a minimal set of solutions and algorithms of construction " .
+    //     "of minimal generating sets of solutions for all types of systems are given.";
+
+    // $phrases = DonatelloZa\RakePlus\RakePlus::create($text)->get();
+    // $sentimentScores = vader($tokens);
+    // return response()->json($sentimentScores);
+
+    // $analyzer = new Analyzer();
+
+    // $output_text = $analyzer->getSentiment("David is smart, handsome, and funny.");
+
+    // $output_emoji = $analyzer->getSentiment("😁");
+
+    // $output_text_with_emoji = $analyzer->getSentiment("Aproko doctor made me 🤣.");
+
+    // print_r($output_text);
+    // print_r($output_emoji);
+    // print_r($output_text_with_emoji);
+
+    // use PhpScience\TextRank\Tool\StopWords\English;
+
+    // String contains a long text, see the /res/sample1.txt file.
+    // $text = "Lorem ipsum...";
+
+    $api = new TextRankFacade();
+    // English implementation for stopwords/junk words:
+    $stopWords = new PhpScience\TextRank\Tool\StopWords\English();
+    $api->setStopWords($stopWords);
+
+    // Array of the most important keywords:
+    $result = $api->getOnlyKeyWords($text);
+
+    // // Array of the sentences from the most important part of the text:
+    // $result = $api->getHighlights($text);
+
+    // Array of the most important sentences from the text:
+    // $result = $api->summarizeTextBasic($text);
+
+    return response()->json($result);
 });
