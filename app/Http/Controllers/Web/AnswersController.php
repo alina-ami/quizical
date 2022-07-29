@@ -30,4 +30,16 @@ class AnswersController extends Controller
     {
         return view('web.answers.show');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Answer $answer)
+    {
+        $question->delete();
+        return redirect()->back();
+    }
 }

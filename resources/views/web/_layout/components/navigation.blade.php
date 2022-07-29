@@ -15,6 +15,7 @@
       <x-nav-simple-menu-item icon="fas fa-heart" label="Home" :url="route('web.home')" />
       <x-nav-simple-menu-item icon="fa-solid fa-comment-dots" label="Questions" :url="route('web.home')" />
       <x-nav-simple-menu-item icon="fa-solid fa-comment-dots" label="Profile" :url="route('web.profile.create')" />
+      <x-nav-simple-menu-item icon="fa-solid fa-comment-dots" label="Answers" :url="route('web.answers.index')" />
       <x-nav-simple-menu-item icon="fa-solid fa-arrow-right-from-bracket" label="Sign Out" :url="route('web.auth.logout')" />
     </ul>
   </div>
