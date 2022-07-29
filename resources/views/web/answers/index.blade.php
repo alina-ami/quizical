@@ -23,11 +23,11 @@
                         </li>
                         <li class="list-group-item border-0 ps-0 pt-0 text-sm">
                             <strong class="text-dark">Points earned for answers:</strong>
-                            &nbsp; {{ $user->total_points_earned - 2 }}
+                            &nbsp; {{ $user->total_points_earned%2 }}
                         </li>
                         <li class="list-group-item border-0 ps-0 text-sm">
                             <strong class="text-dark">Points earned for relevance:</strong>
-                            &nbsp; {{ $user->total_points_earned - 3 }}
+                            &nbsp; {{ $user->total_points_earned%2 }}
                         </li>
                         <li class="list-group-item border-0 ps-0 text-sm">
                             <strong class="text-dark">No of questions answered:</strong>
