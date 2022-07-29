@@ -52,6 +52,7 @@ Route::prefix('/')->as('web.')->group(function () {
     Route::prefix('/answers')->as('answers.')->group(function () {
         Route::get('/', [WebAnswersController::class, 'index'])->name('index');
         Route::post('/{answer}', [WebAnswersController::class, 'show'])->name('show');
+        Route::post('/{answer}', [WebAnswersController::class, 'destory'])->name('destory');
     });
 });
 

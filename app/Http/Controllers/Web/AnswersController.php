@@ -17,7 +17,9 @@ class AnswersController extends Controller
             ->latest()
             ->paginate(12);
 
-        return view('web.answers.index')->with('answers', $answers);
+        $answersCount = Answer::where('user_id', 2)->count();
+
+        return view('web.answers.index')->with('answers', $answers)->with('answersCount', $answersCount)->with('user', $user);
     }
 
     /**
