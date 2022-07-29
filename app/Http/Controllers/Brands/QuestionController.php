@@ -85,13 +85,14 @@ class QuestionController extends Controller
             $sentimentPercentages = ["positive" => 0, "negative" => 0, "neutral" => 0];
         }
 
+        $text = $question->answers->pluck('answer')->implode(" ") ?: 'No results';
 
-        $topKeywordsImage = Cache::remember("question_{$question->id}_top_keywords", 60 * 60 * 12, function () use ($question) {
+        $topKeywordsImage = Cache::remember(md5($text), 60 * 60 * 12, function () use ($text) {
             $client = new Client();
 
             $response = $client->post('https://quickchart.io/wordcloud', [
                 'json' => [
-                    "text" => $question->answers->pluck('answer')->implode(" ") ?: 'No results',
+                    "text" => $text,
                     "removeStopwords" => true,
                     "width" => 500,
                     "height" => 300,

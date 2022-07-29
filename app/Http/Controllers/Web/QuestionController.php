@@ -21,7 +21,11 @@ class QuestionController extends Controller
         $questions = Question::whereDoesntHave(
             'answers',
             fn (Builder $query) => $query->where('user_id', $request->user()->id)
-        )->with('brand')->paginate(6);
+        )->with('brand')->latest()->paginate(6);
+
+        if ($questions->isEmpty()) {
+            $questions = Question::inRandomOrder()->paginate(6);
+        }
 
         return view('web.questions.index')
             ->with('questions', $questions);
