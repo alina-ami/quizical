@@ -10,6 +10,20 @@ use App\Models\Brand;
 
 class ProfileController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        $user = $request->user();
+        $user->loadCount('answers');
+        $answers = $user->answers()
+            ->latest()
+            ->paginate(12);
+
+        return view('web.profile.index')
+            ->with('answers', $answers)
+            ->with('user', $user);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +31,7 @@ class ProfileController extends Controller
      */
     public function profile(Request $request)
     {
-        return view('web.profile.index')->with(
+        return view('web.profile.edit')->with(
             'interests',
             Interest::all()->map(fn ($item) => ['label' => $item->name, 'value' => $item->id])->toArray()
         )->with(
@@ -37,6 +51,6 @@ class ProfileController extends Controller
             'brands_liked' => $request->brands,
         ]);
 
-        return redirect()->route('web.home');
+        return redirect()->route('web.profile.index');
     }
 }

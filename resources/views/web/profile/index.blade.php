@@ -2,26 +2,26 @@
 
 @section('content')
     <div class="container content">
-        <div class="row">
-            <div class="col-12 col-md-10 offset-md-1">
-                <h2 class="mb-4 text-center">Hi, let's get started</h2>
+        <h4 class="mb-4">Your answers</h4>
 
-                <div class="card card-body">
-                    <x-form :action="route('web.profile.store')" method="POST">
-                        <x-input label="My name is:" name="name" id="name" placeholder="Julie" :value="$user->name" />
-                        <x-input label="I'm:" name="age" id="age" placeholder="25" :value="$user->age" />
-                        <x-genders name="gender" label="I identify as:" type="radio" :value="$user->gender" />
-                        <x-tags name="interests[]" label="And interesed in:" :options="$interests" :values="$user->interests" />
-                        <x-tags name="brands[]" label="These are some brands I like and use:" :options="$brands"
-                            :values="$user->brands_liked" />
+        <div class="row mb-4 ms-1">
+            <div class="col-12 col-md-7">
+                @include('web.profile.partials.profile')</div>
 
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">
-                                Save profile
-                            </button>
-                        </div>
-                    </x-form>
-                </div>
+            <div class="col-12 col-md-5">
+                @include('web.profile.partials.score')</div>
+
+
+            <div class="col-12 mt-5">
+                <x-table :headers="['Question', 'Answer', 'Points earned']" :data="$answers">
+                    @foreach ($answers as $item)
+                        <tr>
+                            <td>{{ Str::limit($item->question->title, 75) }}</td>
+                            <td>{{ Str::limit($item->answer, 75) }}</td>
+                            <td class="text-end">{{ $item->points_earned }}</td>
+                        </tr>
+                    @endforeach
+                </x-table>
             </div>
         </div>
     </div>

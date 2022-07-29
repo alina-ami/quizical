@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Brands;
 
 use GuzzleHttp\Client;
 use App\Models\Question;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\Brands\Questions\StoreQuestionRequest;
@@ -63,9 +62,9 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        $answersSentiment = $question->answers->reduce(function($results, $answer) {
+        $answersSentiment = $question->answers->reduce(function ($results, $answer) {
             $results[$answer->sentiment['type']] += 1;
-            $results['total'] +=1;
+            $results['total'] += 1;
 
             return $results;
         }, [
@@ -76,18 +75,18 @@ class QuestionController extends Controller
         ]);
 
 
-        if ($answersSentiment['total']){
+        if ($answersSentiment['total']) {
             $sentimentPercentages = [
                 "positive" => intval($answersSentiment["positive"] / $answersSentiment["total"] * 100),
                 "negative" => intval($answersSentiment["negative"] / $answersSentiment["total"] * 100),
                 "neutral" => intval($answersSentiment["neutral"] / $answersSentiment["total"] * 100),
             ];
         } else {
-            $sentimentPercentages = ["positive" => 0,"negative" => 0,"neutral" => 0];
+            $sentimentPercentages = ["positive" => 0, "negative" => 0, "neutral" => 0];
         }
 
 
-        $topKeywordsImage = Cache::remember("question_{$question->id}_top_keywords", 60*60*12, function () use ($question) {
+        $topKeywordsImage = Cache::remember("question_{$question->id}_top_keywords", 60 * 60 * 12, function () use ($question) {
             $client = new Client();
 
             $response = $client->post('https://quickchart.io/wordcloud', [

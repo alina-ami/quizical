@@ -43,14 +43,9 @@ Route::prefix('/')->as('web.')->group(function () {
 
 
     Route::prefix('/profile')->as('profile.')->group(function () {
-        Route::get('/', [WebProfileController::class, 'profile'])->name('create');
+        Route::get('/', [WebProfileController::class, 'index'])->name('index');
+        Route::get('/edit', [WebProfileController::class, 'profile'])->name('create');
         Route::post('/', [WebProfileController::class, 'store'])->name('store');
-    });
-
-    Route::prefix('/answers')->as('answers.')->group(function () {
-        Route::get('/', [WebAnswersController::class, 'index'])->name('index');
-        Route::post('/{answer}', [WebAnswersController::class, 'show'])->name('show');
-        Route::post('/{answer}', [WebAnswersController::class, 'destory'])->name('destory');
     });
 });
 

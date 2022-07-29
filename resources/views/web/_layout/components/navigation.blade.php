@@ -59,7 +59,8 @@
             @auth
             <ul class="navbar-nav d-lg-block d-none">
                 <li class="nav-item d-inline">
-                    <a href="{{ route('web.profile.create') }}" class="mb-0 me-1 mr-3">Hello,
+                    Hello,
+                    <a href="{{ route('web.profile.index') }}" class="mb-0 me-1 mr-3">
                         {{ auth()->user()->name }}</a>
                 </li>
                 <li class="nav-item d-inline">
