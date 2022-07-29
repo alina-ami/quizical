@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use App\Models\Question;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\Brands\Questions\StoreQuestionRequest;
 use App\Http\Requests\Brands\Questions\UpdateQuestionRequest;
 
@@ -85,22 +86,23 @@ class QuestionController extends Controller
             $sentimentPercentages = ["positive" => 0,"negative" => 0,"neutral" => 0];
         }
 
-        // dd($answersSentiment);
 
-        $client = new Client();
+        $topKeywordsImage = Cache::remember("question_{$question->id}_top_keywords", 60*60*12, function () use ($question) {
+            $client = new Client();
 
-        $response = $client->post('https://quickchart.io/wordcloud', [
-            'json' => [
-                "text" => $question->answers->pluck('answer')->implode(" ") ?: 'No results',
-                "removeStopwords" => true,
-                "width" => 500,
-                "height" => 300,
-                "format" => 'png',
-                "maxNumWords" => 20
-            ]
-        ]);
+            $response = $client->post('https://quickchart.io/wordcloud', [
+                'json' => [
+                    "text" => $question->answers->pluck('answer')->implode(" ") ?: 'No results',
+                    "removeStopwords" => true,
+                    "width" => 500,
+                    "height" => 300,
+                    "format" => 'png',
+                    "maxNumWords" => 20
+                ]
+            ]);
 
-        $topKeywordsImage = $response->getBody();
+            return base64_encode($response->getBody());
+        });
 
         return view('brands.questions.show')->with(
             'question',
