@@ -44,7 +44,9 @@ class QuestionController extends Controller
     {
         $question = Question::create([
             'brand_id' => 1,
-            ...$request->validated()
+            'points_for_relevance' => 10,
+            'points_for_answer' => 5,
+            ...$request->validated(),
         ]);
 
         return redirect()->route('brands.questions.show', $question->id);
