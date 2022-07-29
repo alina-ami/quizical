@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -25,14 +26,24 @@ class Answer extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getSentimentAttribute(): string
-    {
-        if ($this->sentiment["compound"] >= 0.05) {
+    public function sentiment(): Attribute {
+        return Attribute::make(
+            set: function($value) {
+                $value['type'] = $this->computeSentimentType($value['compound']);
+
+                return json_encode($value);
+            }
+        );
+    }
+
+    public function computeSentimentType($value) {
+        if ($value >= 0.05) {
             return 'positive';
-        } else if ($this->sentiment["compound"] <= -0.05) {
+        } else if ($value <= -0.05) {
             return 'negative';
         }
 
         return 'neutral';
     }
+
 }
