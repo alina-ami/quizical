@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             LevelSeeder::class,
             UserSeeder::class,
             QuestionSeeder::class,
-            InterestsSeeder::class
+            InterestsSeeder::class,
+            AnswersSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
 
