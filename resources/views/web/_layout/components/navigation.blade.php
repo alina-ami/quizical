@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 mt-4">
     <div class="container blur blur-rounded py-3 px-5">
         <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3" href="{{ route('web.home') }}">
-            <img src="{{ asset('assets/img/logo-ct-dark.png') }}" class="" height="30" alt="main_logo">
+            <img src="{{ asset('assets/img/favicon.png') }}" class="" height="30" alt="main_logo">
             ReachMe
         </a>
         <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
