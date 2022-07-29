@@ -1,7 +1,7 @@
 <title>
     @isset($title)
         {{ $title }} -
-    @endisset Quizical
+    @endisset Reach Me
 </title>
 
 

@@ -1,11 +1,9 @@
-<div class="card card-background card-background-mask-info h-100 tilt" data-tilt=""
-    style="will-change: transform; transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
-    <div class="full-background" style="background-image: url('{{ asset('assets/img/curved-images/white-curved.jpeg') }}')">
+<div class="card h-100">
+    <div class="card-header pb-0 p-3 text-start">
+        <h6 class="mb-0">Keywords Cloud</h6>
     </div>
-    <div class="card-body d-flex flex-column justify-content-center text-center">
-        <h2 class="text-white mb-0 mt-2 up">Answers</h2>
-        <h1 class="text-white mb-0 up">{{ $question->answers_count }}</h1>
-        <p>TODO:: replace with top keywords</p>
+    <div class="card-body px-0">
+        <img class="img-fluid"  src="data:image/png;base64,{{ $topKeywordsImage }}" />
     </div>
 </div>
 

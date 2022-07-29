@@ -1,1 +1,1 @@
-## Quizical
+## Quizzical
