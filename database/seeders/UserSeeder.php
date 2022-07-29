@@ -30,6 +30,18 @@ class UserSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'id'=> 2,
+                'role_id' => 2,
+                'level_id' => 1,
+                'name' => 'John Doe',
+                'email' => 'johndoe@example.com',
+                'password' => Hash::make('mariamaria'),
+                'gender' => 'male',
+                'age' => 45,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ]);
     }
 }

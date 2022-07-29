@@ -44,7 +44,7 @@ class QuestionSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ], [
-                'brand_id' => 2,
+                'brand_id' => 1,
                 'title' => 'During what period of the month do you shop?',
                 'type' => 'text',
                 'points_for_answer' => 1,
@@ -57,7 +57,7 @@ class QuestionSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ], [
-                'brand_id' => 9,
+                'brand_id' => 1,
                 'title' => 'Do you like eco recycled cotton?',
                 'type' => 'text',
                 'points_for_answer' => 1,
@@ -83,7 +83,7 @@ class QuestionSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ], [
-                'brand_id' => 4,
+                'brand_id' => 1,
                 'title' => 'How oftern do you buy per month?',
                 'type' => 'text',
                 'points_for_answer' => 3,
@@ -97,7 +97,7 @@ class QuestionSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'brand_id' => 5,
+                'brand_id' => 1,
                 'title' => 'What other brands simillar to us do you buy from?',
                 'type' => 'text',
                 'points_for_answer' => 3,
@@ -125,7 +125,7 @@ class QuestionSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'brand_id' => 2,
+                'brand_id' => 1,
                 'title' => 'What is the first word that would describe us?',
                 'type' => 'text',
                 'points_for_answer' => 2,
@@ -153,7 +153,7 @@ class QuestionSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'brand_id' => 6,
+                'brand_id' => 1,
                 'title' => 'What is one thing you would change to our order placement flow?',
                 'type' => 'text',
                 'points_for_answer' => 2,
@@ -167,7 +167,7 @@ class QuestionSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'brand_id' => 3,
+                'brand_id' => 1,
                 'title' => 'What is one make-up product you use everyday?',
                 'type' => 'text',
                 'points_for_answer' => 2,
